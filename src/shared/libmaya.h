@@ -1,4 +1,4 @@
-/* libmaya v0.1 (started on 29-Jul-26)
+/* libmaya v0.1.1 (started on 29-Jul-26)
  *
  * General-purpose library for many use-cases.
  *
@@ -15,19 +15,15 @@
  *
  * If you are using it as shared-object file, you do not want to define
  * MAYA_IMPLEMENTATION. It duplicates the code.
+ *
+ * CHANGELOG:
+ *   v0.1.1: typos and fixes, remove cpp extern- will be implemented if I want
+ *   v0.1.0: basic modules- logging, ANSI, types, and bits
+ *
 **/
 
 #ifndef MAYA_H
 #define MAYA_H
-
-/*----------------------------------------------------------------------------*/
-
-// CPP Compat (untested)
-#ifdef __cplusplus
-    #define MAYA_EXTERN_C extern "C"
-#else
-    #define MAYA_EXTERN_C extern
-#endif
 
 /*----------------------------------------------------------------------------*/
 
@@ -70,7 +66,7 @@
     #define MAYA_OS_OPENBSD 1
 
 #elif defined(__APPLE__) || defined(__MACH__)
-    #define MAYA_PLATFORM "macos"
+    #define MAYA_PLATFORM "MACOS"
     #define MAYA_OS_MACOS 1
 
 #elif defined(unix) || defined(__unix__) || defined(__unix)
@@ -108,13 +104,11 @@
     #define MAYA_COMPILER_UNKNOWN 1
 #endif
 
-// Reserved for compiler macros: inline, static, etc...
-
 /*----------------------------------------------------------------------------*/
 
 // Project Macros
 
-// TODO: Add Color depending on if color is supported by terminal.
+// Add Color depending on if color is supported by terminal.
 #ifdef MAYA_MODULE_COLORS
 
 #define TODO(msg) printf("[%sTODO%s] (%s - %s:%d) %s\n",\
@@ -138,6 +132,7 @@
 
 #include <stdio.h>
 
+// Colors the text if COLORS module is also defined.
 #ifdef MAYA_MODULE_COLORS
 
 #define INFO(msg) printf("[%sINFO%s] (%s - %s:%d) %s\n",\
@@ -170,7 +165,7 @@
         __FILE__, __func__, __LINE__, (msg));
 #endif
 
-#endif // COLORS MODULE CHECK
+#endif
 #endif // MAYA_MODULE_LOGS
 
 /*----------------------------------------------------------------------------*/
@@ -182,12 +177,12 @@
 
 // MAYA_MODULE_COLORS
 //
-// These do *NOT* always work for every termianl. Look it up yourself if your
-// terminal is compatible with them. The wikipedia source gives some knowledge
-// into this.
+// These do not work for for every termianl. Find if they are compatible for
+// your terminal/use-case.
 //
-// Terminals that usually support all of these are: Kitty, iTerm2, mintty, and
-// Konsole.
+// Terminals that typically support all of these are: Kitty, iTerm2, mintty,
+// Windows Terminal, and Konsole. The wikipedia page has some description of
+// supported terminals for each escape code.
 
 #define MAYA_C_RESET "\033[39;49m"
 
@@ -226,77 +221,12 @@
 
 // MAYA_MODULE_ANSI
 //
-// These do *NOT* always for for every termianl. Do your due-diligence and find
-// if they are compatible for your terminal/use-case.
+// These do not work for for every termianl. Find if they are compatible for
+// your terminal/use-case.
 //
 // Terminals that typically support all of these are: Kitty, iTerm2, mintty,
-// Windows Terminal, and Konsole.
-
-// TODO: Add the reverse cases for each. (Not blinking, Not underlined, etc..)
-#define MAYA_ANSI_RESET "\033[0m"
-#define MAYA_ANSI_BOLD "\033[1m"
-#define MAYA_ANSI_DIM "\033[2m"
-#define MAYA_ANSI_ITALIC "\033[3m"
-#define MAYA_ANSI_UNDERLINE "\033[4m"
-#define MAYA_ANSI_INVERT "\033[7m"
-
-#endif // MAYA_MODULES_ANSI
-
-/*----------------------------------------------------------------------------*/
-
-#if defined(MAYA_MODULE_TYPES) || defined(MAYA_MODULES_ALL)
-
-// MAYA_MODULES_TYPES
-//
-// These do *NOT* always work for every termianl. Look it up yourself if your
-// terminal is compatible with them. The wikipedia source gives some knowledge
-// into this.
-//
-// Terminals that usually support all of these are: Kitty, iTerm2, mintty, and
-// Konsole.
-
-#define MAYA_C_RESET "\033[39;49m"
-
-#define MAYA_C_RED "\033[31m"
-#define MAYA_CB_RED "\033[91m"
-
-#define MAYA_C_GREEN "\033[32m"
-#define MAYA_CB_GREEN "\033[92m"
-
-#define MAYA_C_YELLOW "\033[33m"
-#define MAYA_CB_YELLOW "\033[93m"
-
-#define MAYA_C_BLUE "\033[34m"
-#define MAYA_CB_BLUE "\033[94m"
-
-#define MAYA_C_MAGENTA "\033[35m"
-#define MAYA_CB_MAGENTA "\033[95m"
-
-#define MAYA_C_CYAN "\033[36m"
-#define MAYA_CB_CYAN "\033[96m"
-
-#define MAYA_C_WHITE "\033[37m"
-#define MAYA_CB_WHITE "\033[97m"
-
-#define MAYA_C_BLACK "\033[30m"
-#define MAYA_C_GREY "\033[90m"
-
-#endif // MAYA_MODULE_COLORS
-
-/*----------------------------------------------------------------------------*/
-
-#if defined(MAYA_MODULE_ANSI) || defined(MAYA_MODULES_ALL)
-
-// Sources:
-// https://en.wikipedia.org/wiki/ANSI_escape_code
-
-// MAYA_MODULE_ANSI
-//
-// These do *NOT* always for for every termianl. Do your due-diligence and find
-// if they are compatible for your terminal/use-case.
-//
-// Terminals that typically support all of these are: Kitty, iTerm2, mintty,
-// Windows Terminal, and Konsole.
+// Windows Terminal, and Konsole. The wikipedia page has some description of
+// supported terminals for each escape code.
 
 // TODO: Add the reverse cases for each. (Not blinking, Not underlined, etc..)
 #define MAYA_ANSI_RESET "\033[0m"
