@@ -1,7 +1,7 @@
 #define MAYA_IMPLEMENTATION
 
 // Use this to test all modules:
-// #define MAYA_MODULE_ALL
+// #define MAYA_MODULES_ALL
 
 // Testing Debugs
 #define MAYA_DEBUG
@@ -10,7 +10,6 @@
 #define MAYA_MODULE_TYPES
 #define MAYA_MODULE_BITS
 #define MAYA_MODULE_LOGS
-#define MAYA_MODULE_COLORS
 #define MAYA_MODULE_ANSI
 
 #include <stdint.h>
@@ -34,67 +33,72 @@ int main(void)
 
 /*----------------------------------------------------------------------------*/
 
+// Test Operating System & Compiler define statements:
+#ifndef MAYA_OS_UNKNOWN
+    printf("MAYA_OS: %s\n", MAYA_OS);
+#else
+    printf("MAYA_OS: Unknown OS\n");
+#endif
+
+#ifndef MAYA_COMPILER_UNKNOWN
+    printf("MAYA_COMPILER: %s\n", MAYA_COMPILER);
+#endif
+
+    printf("\n");
 
 // Testing Project Macros
 #ifdef MAYA_MODULE_LOGS
     printf("[ MAYA_MODULE_LOGS ]\n");
-    TODO("Testing TODO Macro");
-    INFO("Test Info Log");
-    WARN("Test Warn Log");
-    DEBUG("Test Debug");
-    ERROR("Test Error Log");
-    ERRORC("Test Error Log", 18);
+
+    // `if (1)` is to test if I need do-while loops or not.
+    if (1)
+        TODO("Testing TODO Macro");
+    if (1)
+        INFO("Test Info Log");
+    if (1)
+        WARN("Test Warn Log");
+    if (1)
+        DEBUG("Test Debug");
+    if (1)
+        ERROR("Test Error Log");
+    if (1)
+        ERRORC("Test Error Log", 18);
 
     printf("\n");
+
 #else
     printf("[TESTS] Ignoring MAYA_MODULE_LOGS\n");
 #endif
 
 /*----------------------------------------------------------------------------*/
 
-#ifdef MAYA_MODULE_COLORS
-    printf("[ MAYA_MODULE_COLORS ]\n");
-
-    printf("  %sMAYA_C_RED%s\n", MAYA_C_RED, MAYA_C_RESET);
-    printf("  %sMAYA_CB_RED%s\n", MAYA_CB_RED, MAYA_C_RESET);
-
-    printf("  %sMAYA_C_GREEN%s\n", MAYA_C_GREEN, MAYA_C_RESET);
-    printf("  %sMAYA_CB_GREEN%s\n", MAYA_CB_GREEN, MAYA_C_RESET);
-
-    printf("  %sMAYA_C_YELLOW%s\n", MAYA_C_YELLOW, MAYA_C_RESET);
-    printf("  %sMAYA_CB_YELLOW%s\n", MAYA_CB_YELLOW, MAYA_C_RESET);
-
-    printf("  %sMAYA_C_BLUE%s\n", MAYA_C_BLUE, MAYA_C_RESET);
-    printf("  %sMAYA_CB_BLUE%s\n", MAYA_CB_BLUE, MAYA_C_RESET);
-
-    printf("  %sMAYA_C_MAGENTA%s\n", MAYA_C_MAGENTA, MAYA_C_RESET);
-    printf("  %sMAYA_CB_MAGENTA%s\n", MAYA_CB_MAGENTA, MAYA_C_RESET);
-
-    printf("  %sMAYA_C_CYAN%s\n", MAYA_C_CYAN, MAYA_C_RESET);
-    printf("  %sMAYA_CB_CYAN%s\n", MAYA_CB_CYAN, MAYA_C_RESET);
-
-    printf("  %sMAYA_C_WHITE%s\n", MAYA_C_WHITE, MAYA_C_RESET);
-    printf("  %sMAYA_CB_WHITE%s\n", MAYA_CB_WHITE, MAYA_C_RESET);
-
-    printf("  %sMAYA_C_BLACK%s\n", MAYA_C_BLACK, MAYA_C_RESET);
-    printf("  %sMAYA_C_GREY%s\n", MAYA_C_GREY, MAYA_C_RESET);
-
-    printf("\n");
-#else
-    printf("[TESTS] Ignoring MAYA_MODULE_COLORS\n");
-#endif // MAYA_MODULE_COLORS
-
-/*----------------------------------------------------------------------------*/
-
 #ifdef MAYA_MODULE_ANSI
     printf("[ MAYA_MODULE_ANSI ]\n");
-    printf("  %sBold%s\n", MAYA_ANSI_BOLD, MAYA_ANSI_RESET);
-    printf("  %sDim%s\n", MAYA_ANSI_DIM, MAYA_ANSI_RESET);
-    printf("  %sItalic%s\n", MAYA_ANSI_ITALIC, MAYA_ANSI_RESET);
-    printf("  %sMAYA_ANSI_UNDERLINE%s\n", MAYA_ANSI_UNDERLINE, MAYA_ANSI_RESET);
-    printf("  %sMAYA_ANSI_INVERT%s\n", MAYA_ANSI_INVERT, MAYA_ANSI_RESET);
-
+    printf("  %sCOLOR_RED%s\n", COLOR_RED, COLOR_RESET);
+    printf("  %sCOLOR_BRIGHT_RED%s\n", COLOR_BRIGHT_RED, COLOR_RESET);
+    printf("  %sCOLOR_GREEN%s\n", COLOR_GREEN, COLOR_RESET);
+    printf("  %sCOLOR_BRIGHT_GREEN%s\n", COLOR_BRIGHT_GREEN, COLOR_RESET);
+    printf("  %sCOLOR_YELLOW%s\n", COLOR_YELLOW, COLOR_RESET);
+    printf("  %sCOLOR_BRIGHT_YELLOW%s\n", COLOR_BRIGHT_YELLOW, COLOR_RESET);
+    printf("  %sCOLOR_BLUE%s\n", COLOR_BLUE, COLOR_RESET);
+    printf("  %sCOLOR_BRIGHT_BLUE%s\n", COLOR_BRIGHT_BLUE, COLOR_RESET);
+    printf("  %sCOLOR_MAGENTA%s\n", COLOR_MAGENTA, COLOR_RESET);
+    printf("  %sCOLOR_BRIGHT_MAGENTA%s\n", COLOR_BRIGHT_MAGENTA, COLOR_RESET);
+    printf("  %sCOLOR_CYAN%s\n", COLOR_CYAN, COLOR_RESET);
+    printf("  %sCOLOR_BRIGHT_CYAN%s\n", COLOR_BRIGHT_CYAN, COLOR_RESET);
+    printf("  %sCOLOR_WHITE%s\n", COLOR_WHITE, COLOR_RESET);
+    printf("  %sCOLOR_BRIGHT_WHITE%s\n", COLOR_BRIGHT_WHITE, COLOR_RESET);
+    printf("  %sCOLOR_BLACK%s\n", COLOR_BLACK, COLOR_RESET);
+    printf("  %sCOLOR_GREY%s\n", COLOR_GREY, COLOR_RESET);
     printf("\n");
+
+    printf("  %sANSI_BOLD%s\n", ANSI_BOLD, ANSI_RESET);
+    printf("  %sANSI_DIM%s\n", ANSI_DIM, ANSI_RESET);
+    printf("  %sANSI_ITALICS%s\n", ANSI_ITALIC, ANSI_RESET);
+    printf("  %sANSI_UNDERLINE%s\n", ANSI_UNDERLINE, ANSI_RESET);
+    printf("  %sANSI_INVERT%s\n", ANSI_INVERT, ANSI_RESET);
+    printf("\n");
+
 #else
     printf("[TESTS] Ignoring MAYA_MODULE_ANSI\n");
 #endif
@@ -113,8 +117,8 @@ int main(void)
 
     TEST(( (i32) - 1 ) < 0, "i32 is not signed");
     TEST(( (i64) - 1 ) < 0, "i64 is not signed");
-
     printf("\n");
+
 #else
     printf("[TESTS] Ignoring MAYA_MODULE_TYPES\n");
 #endif // MAYA_MODULE_TYPES
@@ -157,6 +161,7 @@ int main(void)
     TEST(BIT_CHECK(bits, 4) == 1, "BIT_CHECK failed to check bit 4");
 
     printf("\n");
+
 #else
     printf("[TESTS] Ignoring MAYA_MODULE_BITS\n");
 #endif // MAYA_MODULE_BITS
@@ -168,6 +173,6 @@ int main(void)
         return 1;
     }
 
-    printf("\nAll test(ables) passed!\n");
+    printf("\nAll test(able)s passed!\n");
     return 0;
 }
