@@ -13,7 +13,7 @@ _Dates are formatted DD-MM-YYYY_
 
 - - -
 
-## [0.2.0] - 7.8.2026
+## [0.2.0](https://github.com/komidan/libmaya/releases/tag/0.2.0-beta) - 7.8.2026
 
 ## Added
 - `MAYA_COMPILER` string define
